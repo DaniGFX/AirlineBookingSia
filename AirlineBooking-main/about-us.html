@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - FlightFinder</title>
+    <link rel="stylesheet" href="flight.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles for about us page */
+        .about-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .about-header h1 {
+            color: #ffffff;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .about-header p {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-intro {
+            background: #f0f8ff;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .about-intro h2 {
+            color: #003366;
+            margin-bottom: 20px;
+        }
+        
+        .about-intro p {
+            color: #666;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .mission-vision {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .mission-card, .vision-card {
+            flex: 1;
+            min-width: 300px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .mission-card i, .vision-card i {
+            font-size: 40px;
+            color: #0066cc;
+            margin-bottom: 20px;
+        }
+        
+        .mission-card h3, .vision-card h3 {
+            font-size: 24px;
+            color: #003366;
+            margin-bottom: 15px;
+        }
+        
+        .mission-card p, .vision-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        .team-section {
+            margin: 60px 0;
+        }
+        
+        .team-section h2 {
+            text-align: center;
+            color: #003366;
+            font-size: 28px;
+            margin-bottom: 40px;
+        }
+        
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .team-member {
+            width: 260px;
+            text-align: center;
+        }
+        
+        .member-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            overflow: hidden;
+        }
+        
+        .member-image i {
+            font-size: 80px;
+            color: #0066cc;
+        }
+        
+        .team-member h3 {
+            color: #003366;
+            margin-bottom: 5px;
+        }
+        
+        .team-member p.position {
+            color: #0066cc;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .team-member p.bio {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .history-section {
+            margin: 60px 0;
+        }
+        
+        .history-section h2 {
+            text-align: center;
+            color: #003366;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #0066cc;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: calc(50% - 40px);
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid #0066cc;
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -14px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -14px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: #0066cc;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content h3 {
+            color: #003366;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .values-section {
+            margin: 60px 0;
+        }
+        
+        .values-section h2 {
+            text-align: center;
+            color: #003366;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        
+        .values-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .value-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 280px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .value-card i {
+            font-size: 36px;
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+        
+        .value-card h3 {
+            color: #003366;
+            margin-bottom: 10px;
+        }
+        
+        .value-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .about-footer {
+            margin-top: 60px;
+            text-align: center;
+            padding: 30px;
+            background: #f0f8ff;
+            border-radius: 10px;
+        }
+        
+        .about-footer h2 {
+            color: #003366;
+            margin-bottom: 15px;
+        }
+        
+        .about-footer p {
+            color: #666;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .about-footer a {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        
+        .about-footer a:hover {
+            background: #004c99;
+        }
+        
+        /* Responsive adjustments for timeline */
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 20px;
+            }
+            
+            .timeline-item:nth-child(odd)::after {
+                right: auto;
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">FlightFinder</div>
+        <nav>
+            <ul>
+                <li><a href="flight.html">Flights</a></li>
+                <li><a href="register.html">Sign Up/Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="about-container">
+            <div class="about-header">
+                <h1>About FlightFinder</h1>
+                <p>Discover the story behind our mission to transform the way you travel.</p>
+            </div>
+            
+            <div class="about-intro">
+                <h2>Who We Are</h2>
+                <p>Founded in 2025, FlightFinder has quickly grown to become one of the most trusted flight comparison and booking platforms in the industry. Our innovative technology and customer-first approach have helped millions of travelers find the perfect flights at the best prices. With headquarters in San Francisco and offices in London, Singapore, and Sydney, we're a global team united by our passion for making travel accessible, affordable, and enjoyable for everyone.</p>
+            </div>
+            
+            <div class="mission-vision">
+                <div class="mission-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Our Mission</h3>
+                    <p>To empower travelers with transparent information and seamless booking experiences, making it easier for everyone to explore the world with confidence and convenience.</p>
+                </div>
+                
+                <div class="vision-card">
+                    <i class="fas fa-eye"></i>
+                    <h3>Our Vision</h3>
+                    <p>To create a world where travel is accessible to all, where planning your journey is as enjoyable as the destination itself, and where exceptional service is the standard, not the exception.</p>
+                </div>
+            </div>
+            
+            <div class="values-section">
+                <h2>Our Core Values</h2>
+                <div class="values-container">
+                    <div class="value-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Customer First</h3>
+                        <p>Every decision we make begins with asking how it will improve our customers' experience.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Innovation</h3>
+                        <p>We constantly seek new ways to improve our technology and services to better serve travelers worldwide.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <i class="fas fa-lock"></i>
+                        <h3>Trust & Transparency</h3>
+                        <p>We believe in providing clear, honest information and prioritizing the security of our customers' data.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <i class="fas fa-globe"></i>
+                        <h3>Global Perspective</h3>
+                        <p>We embrace diversity and work to understand the unique needs of travelers from all backgrounds and cultures.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-section">
+                <h2>Our Leadership Team</h2>
+                <div class="team-container">
+                    <div class="team-member">
+                        <div class="member-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Jessica Chen</h3>
+                        <p class="position">Chief Executive Officer</p>
+                        <p class="bio">With over 15 years in the travel industry, Jessica leads our company with a focus on innovation and customer satisfaction.</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Michael Rodriguez</h3>
+                        <p class="position">Chief Technology Officer</p>
+                        <p class="bio">Michael's expertise in AI and machine learning helps power our advanced flight search algorithms.</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Sarah Johnson</h3>
+                        <p class="position">Chief Customer Officer</p>
+                        <p class="bio">Sarah ensures that exceptional customer service remains at the heart of everything we do.</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-image">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>David Okonkwo</h3>
+                        <p class="position">Chief Financial Officer</p>
+                        <p class="bio">David's financial acumen helps FlightFinder deliver great value while maintaining sustainable growth.</p>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <!-- info-container -->
+    <div class="info-container">
+        <!-- contact us -->
+        <div class="contact-us">
+            <p>Contact Us</p><br>
+            <ul>
+                <li><a href="customer-support.html">Customer Support</a></li>
+                <li><a href="service-guarantee.html">Service Guarantee</a></li>
+                <li><a href="more-service-info.html">More Service info</a></li>
+            </ul>
+        </div>
+        <!-- about us -->
+        <div class="about-us">
+            <p>About Us</p><br>
+            <ul>
+                <li><a href="about-us.html" class="active">About Us</a></li>
+                <li><a href="terms-and-conditions.html">Terms and Conditions</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <!-- connect with us -->
+        <div class="connect-with-us">
+            <p>Connect with us</p><br>
+            <ul>
+                <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-form">
+            <p><i class="fa-solid fa-copyright"></i> 2025 FLIGHTFINDER</p>
+        </div>
+    </footer>
+</body>
+</html>

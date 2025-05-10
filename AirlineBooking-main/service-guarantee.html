@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Guarantee - FlightFinder</title>
+    <link rel="stylesheet" href="flight.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles for service guarantee page */
+        .guarantee-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        .guarantee-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .guarantee-header h1 {
+            color: #ffffff;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .guarantee-header p {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .guarantee-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .guarantee-card {
+            flex: 1;
+            min-width: 300px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .guarantee-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .guarantee-card i {
+            font-size: 36px;
+            color: #0066cc;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .guarantee-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #003366;
+        }
+        
+        .guarantee-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .guarantee-steps {
+            margin-top: 60px;
+        }
+        
+        .guarantee-steps h2 {
+            text-align: center;
+            color: #003366;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #0066cc;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+        
+        .step h3 {
+            color: #003366;
+            margin-bottom: 10px;
+        }
+        
+        .step p {
+            color: #666;
+            font-size: 15px;
+        }
+        
+        .guarantee-footer {
+            margin-top: 60px;
+            text-align: center;
+            padding: 30px;
+            background: #f0f8ff;
+            border-radius: 10px;
+        }
+        
+        .guarantee-footer h2 {
+            color: #003366;
+            margin-bottom: 15px;
+        }
+        
+        .guarantee-footer p {
+            color: #666;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .guarantee-footer a {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        
+        .guarantee-footer a:hover {
+            background: #004c99;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">FlightFinder</div>
+        <nav>
+            <ul>
+                <li><a href="flight.html">Flights</a></li>
+                <li><a href="register.html">Sign Up/Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="guarantee-container">
+            <div class="guarantee-header">
+                <h1>Our Service Guarantee</h1>
+                <p>At FlightFinder, we're committed to providing exceptional service. Our guarantee ensures that you receive the best possible experience from booking to landing.</p>
+            </div>
+            
+            <div class="guarantee-content">
+                <div class="guarantee-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Best Price Guarantee</h3>
+                    <p>Find a lower price for the same flight within 24 hours of booking? We'll refund the difference and give you a $50 travel voucher for your next trip.</p>
+                </div>
+                
+                <div class="guarantee-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Flight Disruption Protection</h3>
+                    <p>If your flight is cancelled or delayed by more than 3 hours, our team will work to find you an alternative flight at no additional cost. If no suitable alternative is available, we'll provide a full refund.</p>
+                </div>
+                
+                <div class="guarantee-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Customer Support</h3>
+                    <p>Our dedicated support team is available around the clock to assist with any issues or questions you may have before, during, or after your journey.</p>
+                </div>
+            </div>
+            
+            <div class="guarantee-steps">
+                <h2>How Our Guarantee Works</h2>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Book Your Flight</h3>
+                        <p>Complete your booking through our secure platform with confidence.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Receive Confirmation</h3>
+                        <p>Get immediate confirmation with all your booking details and our guarantee terms.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Travel with Peace of Mind</h3>
+                        <p>Enjoy your journey knowing that FlightFinder has your back if any issues arise.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Contact Us If Needed</h3>
+                        <p>If you need to claim any part of our guarantee, simply contact our support team.</p>
+                    </div>
+                </div>
+            </div>
+            
+          
+    </main>
+
+    <!-- info-container -->
+    <div class="info-container">
+        <!-- contact us -->
+        <div class="contact-us">
+            <p>Contact Us</p><br>
+            <ul>
+                <li><a href="customer-support.html">Customer Support</a></li>
+                <li><a href="service-guarantee.html" class="active">Service Guarantee</a></li>
+                <li><a href="more-service-info.html">More Service info</a></li>
+            </ul>
+        </div>
+        <!-- about us -->
+        <div class="about-us">
+            <p>About Us</p><br>
+            <ul>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="terms-and-conditions.html">Terms and Conditions</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <!-- connect with us -->
+        <div class="connect-with-us">
+            <p>Connect with us</p><br>
+            <ul>
+                <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-form">
+            <p><i class="fa-solid fa-copyright"></i> 2025 FLIGHTFINDER</p>
+        </div>
+    </footer>
+</body>
+</html>

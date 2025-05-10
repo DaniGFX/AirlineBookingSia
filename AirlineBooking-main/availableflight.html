@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Available Flights</title>
+  <style>
+    .flight-card {
+      border: 4px solid #0a3c5f;
+      padding: 2rem;
+      margin: 1rem 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      background-color: #0a3c5f;
+      color: white;
+      padding: 20px;
+      margin-left: 200px;
+      margin-right: 200px;
+      border-radius: 10px;
+    }
+    #flights-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    button {
+      background-color: #0a3c5f;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    
+  </style>
+</head>
+<body>
+  <h1>Available Flights</h1>
+  <div class="trip-summary" id="trip-summary"></div>
+  <div id="flights-container"></div>
+
+  <script>
+    // Get user search data
+    const searchData = JSON.parse(localStorage.getItem("flightSearchData"));
+    
+    
+
+    // Dummy flight data
+    const flights = [
+      {
+        from: "Manila (MNL)",
+        to: "Tokyo (NRT)",
+        departure: "2025-05-20",
+        return: "2025-05-25",
+        cabin: "economy",
+        time: "10:00 AM", 
+        price: 550,
+        duration: "4h 30m"
+      },
+      {
+        from: "Manila (MNL)",
+        to: "Tokyo (NRT)",
+        departure: "2025-05-20",
+        return: "2025-05-25",
+        cabin: "economy",
+        time: "11:00 AM", 
+        price: 550,
+        duration: "4h 15m"
+      },
+      {
+        from: "Manila (MNL)",
+        to: "Tokyo (NRT)",
+        departure: "2025-05-20",
+        cabin: "business",
+        time: "6:00 AM", 
+        price: 980,
+        duration: "4h 30m"
+      },
+      {
+        from: "Manila (MNL)",
+        to: "Tokyo (NRT)",
+        departure: "2025-05-20",
+        return: "2025-05-25",
+        cabin: "business",
+        time: "4:00 AM", 
+        price: 980,
+        duration: "4h 45m"
+      },
+      {
+        from: "Manila (MNL)",
+        to: "Tokyo (NRT)",
+        departure: "2025-05-20",
+        return: "2025-05-25",
+        cabin: "business",
+        time: "2:00 PM",
+        price: 980,
+        duration: "4h 30m"
+      },
+      {
+        from: "Cebu (CEB)",
+        to: "Seoul (ICN)",
+        departure: "2025-05-22",
+        return: "2025-05-30",
+        cabin: "economy",
+        price: 450,
+        duration: "5h 15m"
+      },
+      {
+        from: "Cebu (CEB)",
+        to: "Seoul (ICN)",
+        departure: "2025-05-22",
+        return: "2025-05-30",
+        cabin: "business",
+        price: 850,
+        duration: "5h 15m"
+      },
+      {
+        from: "Davao (DVO)",
+        to: "Singapore (SIN)",
+        departure: "2025-06-01",
+        return: "2025-06-10",
+        cabin: "economy",
+        price: 600,
+        duration: "3h 45m"
+      },
+      {
+        from: "Davao (DVO)",
+        to: "Singapore (SIN)",
+        departure: "2025-06-01",
+        return: "2025-06-10",
+        cabin: "business",
+        price: 1100,
+        duration: "3h 45m"
+      },
+      {
+        from: "Manila (MNL)",
+        to: "Los Angeles (LAX)",
+        departure: "2025-07-01",
+        return: "2025-07-15",
+        cabin: "economy",
+        price: 1200,
+        duration: "14h 30m"
+      },
+      {
+        from: "Manila (MNL)",
+        to: "Los Angeles (LAX)",
+        departure: "2025-07-01",
+        return: "2025-07-15",
+        cabin: "business",
+        price: 2200,
+        duration: "14h 30m"
+      },
+      {
+        from: "Cebu (CEB)",
+        to: "New York (JFK)",
+        departure: "2025-08-01",
+        return: "2025-08-15",
+        cabin: "economy",
+        price: 1500,
+        duration: "16h 45m"
+      },
+      {
+        from: "Cebu (CEB)",
+        to: "New York (JFK)",
+        departure: "2025-08-01",
+        return: "2025-08-15",
+        cabin: "business",
+        price: 2800,
+        duration: "16h 45m"
+      },
+      {
+        from: "Davao (DVO)",
+        to: "London (LHR)",
+        departure: "2025-09-01",
+        return: "2025-09-15",
+        cabin: "economy",
+        price: 1700,
+        duration: "17h 20m"
+      },
+      {
+        from: "Davao (DVO)",
+        to: "London (LHR)",
+        departure: "2025-09-01",
+        return: "2025-09-15",
+        cabin: "business",
+        price: 3200,
+        duration: "17h 20m"
+      }
+    ];
+
+    const results = flights.filter(flight => {
+      const matchFrom = flight.from === searchData.from;
+      const matchTo = flight.to === searchData.to;
+      const matchDeparture = flight.departure === searchData.departure;
+      // For one-way trips, don't check return date
+      const matchReturn = searchData.tripType === "roundtrip" ? (flight.return === searchData.returnDate) : true;
+      const matchCabin = flight.cabin === searchData.cabinClass;
+
+      return matchFrom && matchTo && matchDeparture && matchReturn && matchCabin;
+    });
+
+    const container = document.getElementById("flights-container");
+
+    if (results.length === 0) {
+      container.innerHTML = "<p>No flights found matching your criteria.</p>";
+    } else {
+      results.forEach(flight => {
+        // Create a modified flight object for booking that removes return date for one-way trips
+        const bookingFlightData = {...flight};
+        if (searchData.tripType === "oneway") {
+          delete bookingFlightData.return;
+        }
+        
+        const div = document.createElement("div");
+        div.className = "flight-card";
+        div.innerHTML = `
+          <h3>${flight.from} → ${flight.to}</h3>
+          <p>Departure: ${flight.departure} at ${flight.time || "N/A"}</p>
+          ${searchData.tripType === "roundtrip" ? `<p>Return: ${flight.return}</p>` : ""}
+          <p>Cabin Class: ${flight.cabin.charAt(0).toUpperCase() + flight.cabin.slice(1)}</p>
+          <p>Flight Duration: ${flight.duration || "N/A"}</p>
+          <p>Flight Number: ${flight.flightNumber || "N/A"}</p>
+          <p>Airline: ${flight.airline || "N/A"}</p>
+          <P>Trip Type: ${searchData.tripType.charAt(0).toUpperCase() + searchData.tripType.slice(1)}</P>
+          <p>Price: $${flight.price}</p>
+          <button onclick='bookFlight(${JSON.stringify(bookingFlightData)})'>Book Now</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+    
+    function bookFlight(flight) {
+      // Store the flight data without the return date for one-way trips
+      localStorage.setItem("selectedFlight", JSON.stringify(flight));
+      // Store the trip type so other pages know if it's a one-way or round trip
+      localStorage.setItem("tripType", searchData.tripType);
+      window.location.href = "seat.html";
+    }
+  </script>
+</body>
+</html>

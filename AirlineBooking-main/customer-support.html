@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support - FlightFinder</title>
+    <link rel="stylesheet" href="flight.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles for support page */
+        .support-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        .support-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .support-header h1 {
+            color: #ffffff;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .support-header p {
+            color: #666;
+            font-size: 18px;
+        }
+        
+        .support-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .support-option {
+            flex: 1;
+            min-width: 300px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .support-option:hover {
+            transform: translateY(-5px);
+        }
+        
+        .support-option i {
+            font-size: 36px;
+            color: #0066cc;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .support-option h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #003366;
+        }
+        
+        .support-option p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .support-option a {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        
+        .support-option a:hover {
+            background: #004c99;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .contact-form h2 {
+            color: #003366;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        .submit-btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background: #004c99;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">FlightFinder</div>
+        <nav>
+            <ul>
+                <li><a href="flight.html">Flights</a></li>
+                <li><a href="register.html">Sign Up/Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="support-container">
+            <div class="support-header">
+                <h1>Customer Support</h1>
+                <p>We're here to help with any questions or concerns about your travel plans.</p>
+            </div>
+            
+            <div class="support-options">
+                <div class="support-option">
+                    <i class="fas fa-comments"></i>
+                    <h3>Live Chat</h3>
+                    <p>Get immediate assistance from our support team through our live chat service.</p>
+                    <a href="#" onclick="alert('Live chat feature would open here')">Start Chat</a>
+                </div>
+                
+                <div class="support-option">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Call Us</h3>
+                    <p>Speak directly with our customer service representatives.</p>
+                    <p><strong>Toll-Free:</strong> 1-800-FLIGHTS</p>
+                    <p><strong>International:</strong> +1-555-123-4567</p>
+                </div>
+                
+                <div class="support-option">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Support</h3>
+                    <p>Send us an email and we'll respond within 24 hours.</p>
+                    <a href="mailto:support@flightfinder.com">support@flightfinder.com</a>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h2>Contact Form</h2>
+                <form id="supportForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="booking">Booking Reference (if applicable)</label>
+                        <input type="text" id="booking">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" required>
+                            <option value="">Select a topic</option>
+                            <option value="booking">Booking Assistance</option>
+                            <option value="cancellation">Cancellation/Refund</option>
+                            <option value="changes">Booking Changes</option>
+                            <option value="baggage">Baggage Inquiries</option>
+                            <option value="payment">Payment Issues</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- info-container -->
+    <div class="info-container">
+        <!-- contact us -->
+        <div class="contact-us">
+            <p>Contact Us</p><br>
+            <ul>
+                <li><a href="customer-support.html" class="active">Customer Support</a></li>
+                <li><a href="service-guarantee.html">Service Guarantee</a></li>
+                <li><a href="more-service-info.html">More Service info</a></li>
+            </ul>
+        </div>
+        <!-- about us -->
+        <div class="about-us">
+            <p>About Us</p><br>
+            <ul>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="terms-and-conditions.html">Terms and Conditions</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <!-- connect with us -->
+        <div class="connect-with-us">
+            <p>Connect with us</p><br>
+            <ul>
+                <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-form">
+            <p><i class="fa-solid fa-copyright"></i> 2025 FLIGHTFINDER</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('supportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for contacting us. We will respond to your inquiry within 24 hours.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
