@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Receipt</title>
+  <style>
+    body {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    
+    .receipt-header {
+      background-color: #0a3c5f;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .receipt-header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    
+    .receipt-body {
+      padding: 30px;
+    }
+    
+    .receipt-section {
+      margin-bottom: 30px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 20px;
+    }
+    
+    .receipt-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    
+    .receipt-section h2 {
+      color: #0a3c5f;
+      margin-top: 0;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+    
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    
+    .receipt-label {
+      font-weight: bold;
+      flex-basis: 40%;
+    }
+    
+    .receipt-value {
+      flex-basis: 60%;
+      text-align: right;
+    }
+    
+    .booking-reference {
+      background-color: #e3f2fd;
+      border: 1px solid #bbdefb;
+      padding: 15px;
+      border-radius: 5px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .booking-reference p {
+      margin: 0;
+      font-size: 16px;
+    }
+    
+    .booking-reference strong {
+      font-size: 22px;
+      color: #0a3c5f;
+      display: block;
+      margin-top: 5px;
+    }
+    
+    .flight-info {
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    
+    .flight-route {
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .flight-direction {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 5px 0 15px;
+    }
+    
+    .flight-city {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    .flight-arrow {
+      margin: 0 15px;
+      color: #0a3c5f;
+      font-size: 24px;
+    }
+    
+    .price-breakdown {
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      padding: 15px;
+    }
+    
+    .price-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    
+    .price-total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 2px solid #ddd;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      gap: 15px;
+    }
+    
+    .button {
+      background-color: #0a3c5f;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .button:hover {
+      background-color: #072a43;
+    }
+    
+    .button.secondary {
+      background-color: #757575;
+    }
+    
+    .button.secondary:hover {
+      background-color: #616161;
+    }
+    
+    .print-note {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #757575;
+    }
+    
+    @media print {
+      .button-container, .print-note {
+        display: none;
+      }
+      
+      body {
+        background-color: white;
+      }
+      
+      .container {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .receipt-row {
+        flex-direction: column;
+      }
+      
+      .receipt-value {
+        text-align: left;
+        margin-top: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="receipt-header">
+      <h1>Booking Receipt</h1>
+    </div>
+    
+    <div class="receipt-body">
+      <div class="booking-reference">
+        <p>Booking Reference</p>
+        <strong id="booking-reference">ABC123</strong>
+        <p id="booking-date">May 6, 2025 15:30:45</p>
+      </div>
+      
+      <div class="receipt-section">
+        <h2>Flight Details</h2>
+        <div class="flight-info">
+          <div class="flight-direction">
+            <span class="flight-city" id="flight-from">Manila</span>
+            <span class="flight-arrow">→</span>
+            <span class="flight-city" id="flight-to">Singapore</span>
+          </div>
+          
+          <div class="receipt-row">
+            <div class="receipt-label">Departure Date:</div>
+            <div class="receipt-value" id="departure-date">May 10, 2025</div>
+          </div>
+          
+          <div id="return-date-row" class="receipt-row">
+            <div class="receipt-label">Return Date:</div>
+            <div class="receipt-value" id="return-date">May 17, 2025</div>
+          </div>
+          
+          <div class="receipt-row">
+            <div class="receipt-label">Flight Type:</div>
+            <div class="receipt-value" id="flight-type">Round Trip</div>
+          </div>
+          
+          <div class="receipt-row">
+            <div class="receipt-label">Cabin Class:</div>
+            <div class="receipt-value" id="cabin-class">Economy</div>
+          </div>
+          
+          <div class="receipt-row">
+            <div class="receipt-label">Flight Time:</div>
+            <div class="receipt-value" id="flight-time">09:30 AM</div>
+          </div>
+
+          <div class="receipt-row">
+            <div class="receipt-label">Flight Number:</div>
+            <div class="receipt-value" id="flight-number">BA 1212</div>
+          </div>
+
+          <div class="receipt-row">
+            <div class="receipt-label">Airline:</div>
+            <div class="receipt-value" id="airline">Philippine Airlines</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="receipt-section">
+        <h2>Seat Details</h2>
+        <div class="receipt-row">
+          <div class="receipt-label">Selected Seat:</div>
+          <div class="receipt-value" id="seat-number">7C</div>
+        </div>
+        <div class="receipt-row">
+          <div class="receipt-label">Seat Class:</div>
+          <div class="receipt-value" id="seat-class">Economy Plus</div>
+        </div>
+      </div>
+      
+      <div class="receipt-section">
+        <h2>Passenger Information</h2>
+        <div class="receipt-row">
+          <div class="receipt-label">Passenger Name:</div>
+          <div class="receipt-value" id="passenger-name">Juan Dela Cruz</div>
+        </div>
+        <div class="receipt-row">
+          <div class="receipt-label">Email:</div>
+          <div class="receipt-value" id="passenger-email">juan.delacruz@example.com</div>
+        </div>
+        <div class="receipt-row">
+          <div class="receipt-label">Phone:</div>
+          <div class="receipt-value" id="passenger-phone">+63 912 345 6789</div>
+        </div>
+        <div class="receipt-row">
+          <div class="receipt-label">Passport/ID:</div>
+          <div class="receipt-value" id="passenger-id">P12345678</div>
+        </div>
+      </div>
+      
+      <div class="receipt-section">
+        <h2>Payment Details</h2>
+        <div class="receipt-row">
+          <div class="receipt-label">Payment Method:</div>
+          <div class="receipt-value" id="payment-method">Credit Card ****1234</div>
+        </div>
+        <div class="receipt-row">
+          <div class="receipt-label">Payment Date:</div>
+          <div class="receipt-value" id="payment-date">May 6, 2025</div>
+        </div>
+        
+        <div class="price-breakdown">
+          <div class="price-item">
+            <div>Base Fare:</div>
+            <div id="base-fare">$350</div>
+          </div>
+          <div class="price-item">
+            <div>Seat Selection:</div>
+            <div id="seat-price">$100</div>
+          </div>
+          <div class="price-total">
+            <div>Total Amount:</div>
+            <div id="total-amount">$450</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="button-container">
+        <button class="button" id="print-receipt">Print Receipt</button>
+        <a href="flight.html" class="button secondary">Back to Homepage</a>
+      </div>
+      
+      <div class="print-note">
+        <p>This is an electronic receipt. You can print this page for your records.</p>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get booking data from localStorage
+      const completedBooking = JSON.parse(localStorage.getItem('completedBooking'));
+      
+      if (!completedBooking) {
+        alert('No booking information found. Redirecting to homepage.');
+        window.location.href = 'flight.html';
+        return;
+      }
+      
+      // Populate receipt with booking data
+      document.getElementById('booking-reference').textContent = completedBooking.reference;
+      document.getElementById('booking-date').textContent = completedBooking.bookingDate;
+      
+      // Flight details
+      document.getElementById('flight-from').textContent = completedBooking.flight.from;
+      document.getElementById('flight-to').textContent = completedBooking.flight.to;
+      document.getElementById('departure-date').textContent = completedBooking.flight.departure;
+      
+      // Check if it's a round trip or one-way
+      const isRoundTrip = completedBooking.flight.return && completedBooking.flight.return.trim() !== '';
+      document.getElementById('flight-type').textContent = isRoundTrip ? 'Round Trip' : 'One Way';
+      
+      if (isRoundTrip) {
+        document.getElementById('return-date').textContent = completedBooking.flight.return;
+      } else {
+        document.getElementById('return-date-row').style.display = 'none';
+      }
+      
+      document.getElementById('cabin-class').textContent = completedBooking.flight.cabin.charAt(0).toUpperCase() + completedBooking.flight.cabin.slice(1);
+      document.getElementById('flight-time').textContent = completedBooking.flight.time || 'N/A';
+      document.getElementById('flight-number').textContent = completedBooking.flight.flightNumber || 'N/A';
+      document.getElementById('airline').textContent = completedBooking.flight.airline || 'N/A';
+
+      
+      // Seat details
+      document.getElementById('seat-number').textContent = completedBooking.seat;
+      document.getElementById('seat-class').textContent = completedBooking.seatClass;
+      
+      // Passenger information
+      document.getElementById('passenger-name').textContent = completedBooking.passenger.fullName;
+      document.getElementById('passenger-email').textContent = completedBooking.passenger.email;
+      document.getElementById('passenger-phone').textContent = completedBooking.passenger.phone;
+      document.getElementById('passenger-id').textContent = completedBooking.passenger.passport;
+      
+      // Payment details
+      document.getElementById('payment-method').textContent = `${completedBooking.paymentMethod} ****${completedBooking.cardLastFour}`;
+      document.getElementById('payment-date').textContent = completedBooking.bookingDate.split(',')[0];
+      
+      // Price breakdown
+      document.getElementById('base-fare').textContent = `$${completedBooking.basePrice}`;
+      document.getElementById('seat-price').textContent = `$${completedBooking.seatPrice}`;
+      document.getElementById('total-amount').textContent = `$${completedBooking.totalPrice}`;
+      
+      // Print functionality
+      document.getElementById('print-receipt').addEventListener('click', function() {
+        window.print();
+      });
+    });
+  </script>
+</body>
+</html>

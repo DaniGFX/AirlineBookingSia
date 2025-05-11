@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Service Info - FlightFinder</title>
+    <link rel="stylesheet" href="flight.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles for more service info page */
+        .service-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        .service-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .service-header h1 {
+            color: #fff;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .service-header p {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .service-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            flex: 1;
+            min-width: 300px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-card i {
+            font-size: 36px;
+            color: #0066cc;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #003366;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .service-options {
+            margin-top: 60px;
+        }
+        
+        .service-options h2 {
+            text-align: center;
+            color: #003366;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        
+        .options-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .option {
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .option-icon {
+            font-size: 36px;
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+        
+        .option h3 {
+            color: #003366;
+            margin-bottom: 10px;
+        }
+        
+        .option p {
+            color: #666;
+            font-size: 15px;
+        }
+        
+        .faq-section {
+            margin-top: 60px;
+        }
+        
+        .faq-section h2 {
+            text-align: center;
+            color: #003366;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        
+        .faq-item {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: #003366;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .faq-answer {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .service-footer {
+            margin-top: 60px;
+            text-align: center;
+            padding: 30px;
+            background: #f0f8ff;
+            border-radius: 10px;
+        }
+        
+        .service-footer h2 {
+            color: #003366;
+            margin-bottom: 15px;
+        }
+        
+        .service-footer p {
+            color: #666;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .service-footer a {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        
+        .service-footer a:hover {
+            background: #004c99;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">FlightFinder</div>
+        <nav>
+            <ul>
+                <li><a href="flight.html">Flights</a></li>
+                <li><a href="register.html">Sign Up/Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="service-container">
+            <div class="service-header">
+                <h1>Additional Service Information</h1>
+                <p>Discover the comprehensive range of services that FlightFinder offers to make your travel experience exceptional from start to finish.</p>
+            </div>
+            
+            <div class="service-content">
+                <div class="service-card">
+                    <i class="fas fa-plane"></i>
+                    <h3>Flight Booking Assistance</h3>
+                    <p>Our expert team can help you find and book the perfect flights to match your schedule and budget. We can handle complex itineraries and special requests to ensure your journey is as smooth as possible.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Flight Alerts & Updates</h3>
+                    <p>Stay informed with real-time notifications about your flight status, gate changes, and any delays. Our system will proactively alert you to any changes so you can plan accordingly.</p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-suitcase"></i>
+                    <h3>Baggage Assistance</h3>
+                    <p>Get information about baggage allowances, track your luggage, and receive assistance with lost or delayed bags. We work directly with airlines to resolve baggage issues quickly and efficiently.</p>
+                </div>
+            </div>
+            
+            <div class="service-options">
+                <h2>Premium Service Options</h2>
+                <div class="options-container">
+                    <div class="option">
+                        <i class="fas fa-star option-icon"></i>
+                        <h3>VIP Assistance</h3>
+                        <p>Enjoy priority support, dedicated agents, and expedited problem resolution with our VIP service package.</p>
+                    </div>
+                    
+                    <div class="option">
+                        <i class="fas fa-globe option-icon"></i>
+                        <h3>International Support</h3>
+                        <p>Multi-lingual assistance available 24/7 for travelers in any country or time zone.</p>
+                    </div>
+                    
+                    <div class="option">
+                        <i class="fas fa-tasks option-icon"></i>
+                        <h3>Itinerary Management</h3>
+                        <p>Let us handle all aspects of your travel planning, from flights to accommodations and ground transportation.</p>
+                    </div>
+                    
+                    <div class="option">
+                        <i class="fas fa-umbrella option-icon"></i>
+                        <h3>Travel Insurance</h3>
+                        <p>Comprehensive coverage options to protect your journey against unexpected events and disruptions.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <p class="faq-question">How quickly can I expect a response when I contact customer support?</p>
+                    <p class="faq-answer">Our standard response time is within 30 minutes for chat and email inquiries, and under 2 minutes for phone calls. Premium members receive priority handling with even faster response times.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What happens if I need to change or cancel my flight?</p>
+                    <p class="faq-answer">Our team will guide you through the change or cancellation process, explaining any applicable fees and helping you find alternatives if needed. We'll work to minimize any penalties based on the airline's policies.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Can you help with special requests like seat selection or dietary requirements?</p>
+                    <p class="faq-answer">Yes, we can assist with all special requests including seat preferences, meal requirements, accessibility needs, and more. Just let us know your requirements when booking or contact our support team.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is there an additional cost for using your customer support services?</p>
+                    <p class="faq-answer">Basic support is included with all bookings at no extra charge. Premium support services are available as optional upgrades or included with certain membership tiers.</p>
+                </div>
+            </div>
+    </main>
+
+    <!-- info-container -->
+    <div class="info-container">
+        <!-- contact us -->
+        <div class="contact-us">
+            <p>Contact Us</p><br>
+            <ul>
+                <li><a href="customer-support.html">Customer Support</a></li>
+                <li><a href="service-guarantee.html">Service Guarantee</a></li>
+                <li><a href="more-service-info.html" class="active">More Service info</a></li>
+            </ul>
+        </div>
+        <!-- about us -->
+        <div class="about-us">
+            <p>About Us</p><br>
+            <ul>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="terms-and-conditions.html">Terms and Conditions</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <!-- connect with us -->
+        <div class="connect-with-us">
+            <p>Connect with us</p><br>
+            <ul>
+                <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-form">
+            <p><i class="fa-solid fa-copyright"></i> 2025 FLIGHTFINDER</p>
+        </div>
+    </footer>
+</body>
+</html>

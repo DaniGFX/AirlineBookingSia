@@ -1,0 +1,504 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlightFinder</title>
+    <link rel="stylesheet" href="flight.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Add styles for FAQ functionality */
+        .faq-item {
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    padding: 0 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.faq-answer.active {
+    max-height: 500px; /* enough height to show full content */
+    padding: 10px;
+}
+
+.fa-angle-down {
+    transition: transform 0.3s ease;
+}
+
+.rotate-icon {
+    transform: rotate(180deg);
+}
+
+.user-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .user-icon {
+        font-size: 1.2rem;
+        color: #000;
+        cursor: pointer;
+        padding: 0 15px;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: #f9f9f9;
+        min-width: 120px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 4px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .user-dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    </style>
+</head>
+<body>
+    <header>
+    <div class="logo">FlightFinder</div>
+    <nav>
+        <ul>
+            <a class="active" href="flight.html">Flights</a>
+            <!-- This will be shown when not logged in -->
+            <li id="login-register"><a href="register.html">Sign Up/Register</a></li>
+            <!-- This will be shown when logged in -->
+            <li id="user-profile" style="display: none;">
+                <div class="user-dropdown">
+                    <a href="#" class="user-icon"><i class="fas fa-user-circle"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#" id="logout-btn">Logout</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>It's more than a<br><span>just a trip</span></h1>
+
+    <div class="trip-type">
+        <div class="radio-group">
+            <input type="radio" id="roundtrip" name="trip-type" value="roundtrip" checked>
+            <label for="roundtrip">Round Trip</label>
+        </div>
+        <div class="radio-group">
+            <input type="radio" id="oneway" name="trip-type" value="oneway">
+            <label for="oneway" class="oneway" value="oneway">One Way</label>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <!-- From where? -->
+        <div class="form-group">
+            <div class="input-with-icon">
+                <i class="fas fa-plane-departure"></i>
+                <input type="text" class="from" list="from-options" placeholder="From Where?">
+                <datalist id="from-options">
+                    <option value="Manila (MNL)">
+                    <option value="Cebu (CEB)">
+                    <option value="Davao (DVO)">
+                    <option value="Hong Kong (HKG)">
+                    <option value="Singapore (SIN)">
+                    <option value="Tokyo (NRT)">
+                    <option value="Seoul (ICN)">
+                    <option value="Sydney (SYD)">
+                    <option value="Los Angeles (LAX)">
+                    <option value="New York (JFK)">
+                    <option value="London (LHR)">
+                    <option value="Dubai (DXB)">
+                </datalist>
+            </div>
+        </div>
+        <!-- To where? -->
+    <div class="form-group">
+        <div class="input-with-icon">
+            <i class="fas fa-plane-arrival"></i>
+            <input type="text" class="to" list="to-options" placeholder="To Where?">
+            <datalist id="to-options">
+                <option value="Manila (MNL)">
+                <option value="Cebu (CEB)">
+                <option value="Davao (DVO)">
+                <option value="Hong Kong (HKG)">
+                <option value="Singapore (SIN)">
+                <option value="Tokyo (NRT)">
+                <option value="Seoul (ICN)">
+                <option value="Sydney (SYD)">
+                <option value="Los Angeles (LAX)">
+                <option value="New York (JFK)">
+                <option value="London (LHR)">
+                <option value="Dubai (DXB)">
+            </datalist>
+        </div>
+    </div>
+    <!-- departure date -->
+        <div class="form-date">
+            <label for="departure-date" class="input-label">Departure</label>
+                <input type="date" class="departure-date">
+            </div>
+        <!-- return date -->
+        <div class="form-date" id="returnDateContainer">
+            <label for="return-date" class="input-label">return</label>
+                <input type="date" class="return-date">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="next-row">
+    <!--cabin class-->
+    <div class="cabin">
+            <div class="input-with-icon">
+                <i class="fas fa-couch"></i>
+                <select class="cabin-class">
+                    <option value="economy">Economy</option>
+                    <option value="premium-economy">Premium Economy</option>
+                    <option value="business">Business</option>
+                    <option value="first">First Class</option>
+            </select>
+        </div>
+    </div>
+    <!-- number of adults -->
+    <div class="adults-form">
+        <div class="input-with-icon">
+            <i class="fas fa-user"></i>
+            <input type="number" class="adults" placeholder="Adults" min="1" max="10">
+        </div>
+    </div>
+    <!-- number of kids -->
+    <div class="kids-form">
+        <div class="input-with-icon">
+        <i class="fas fa-child"></i>
+            <input type="number" class="kids" placeholder="Kids" min="0" max="10">
+        </div>
+    </div>
+    <!-- infants/baby -->
+     <div class="infants-form">
+        <div class="input-with-icon">
+            <i class="fas fa-baby"></i>
+            <input type="number" class="infants" placeholder="Infants" min="0" max="10">
+        </div>
+     </div>
+</div>
+    <!-- search button -->
+    <div class="search-button">
+        <button id="searchBtn" class="flight-button">Search Flights</button>
+    </div>  
+
+    <!-- flights -->
+    <div class="flights">
+        <h2>Find your next adventure with these<span> Flight Deals</span></h2>
+    </div>
+
+    <div class="all-arrow">
+        <h2>All <i class="fa-solid fa-arrow-right"></i></h2>
+    </div>
+
+    <div class="flight-row">
+        <!-- flight 1 -->
+        <div class="shanghai-flight">
+            <img src="img/shanghai.jpg" alt="the bund, shanghai" class="shanghai">
+            <div class="shanghai-info">
+                <h3>The Bund, Shanghai</h3>
+                <p>China's most international city.</p>
+                <p class="price">$598</p>
+            </div>
+        </div>
+
+        <!-- flight 2 -->
+        <div class="sydney-flight">
+            <img src="img/sydney (1).png" alt="Sydney Opera House, Sydney" class="sydney">
+            <div class="sydney-info">
+                <h3>Sydney Opera House, Sydney</h3>
+                <p>One of the most famous in Australia.</p>
+                <p class="price">$981</p>
+            </div>
+        </div>
+
+        <!-- flight 3 -->
+         <div class="kyoto-flight">
+            <img src="img/kyoto_qvsejw.png" alt="Kyoto, Japan" class="kyoto">
+            <div class="kyoto-info">
+                <h3>Kyoto, Japan</h3> 
+                <p>Japan's ancient capital.</p>
+                <p class="price">$633</p>
+            </div>
+         </div>
+    </div>
+
+    <!-- faqs-->
+    <div class="faqs-container">
+        <div class="faqs">
+            <h2>Frequently Asked Questions</h2>  
+        </div>
+
+        <div class="faq-questions-left">
+            <!-- question 1 -->
+            <div class="faq-item first-question">
+                <div class="faq-question">
+                    <h3>How do I book a flight? <i class="fa-solid fa-angle-down"></i></h3>
+                </div>
+                <div class="faq-answer">
+                       To book a flight, simply fill in the search form with your departure and arrival locations, 
+                       preferred travel dates, and passenger details. Click "Search Flights" to view available 
+                       options, select your preferred flight, and follow the checkout process to complete your booking.
+                </div>
+            </div>
+            <!-- question 2 -->
+            <div class="faq-item second-question">
+                <div class="faq-question">
+                    <h3>What payment methods do you accept? <i class="fa-solid fa-angle-down"></i></h3>
+                </div>
+                <div class="faq-answer">
+                    <p>We accept payment methods via credit card <br>
+                </div>
+            </div>
+            <!-- question 3 -->
+            <div class="faq-item third-question">
+                <div class="faq-question">
+                    <h3>Can I change or cancel my booking? <i class="fa-solid fa-angle-down"></i></h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, you can change or cancel your booking subject to the fare rules of your ticket. 
+                       Most tickets allow changes with a fee, while cancellation policies vary by fare type. 
+                       To make changes, log into your account or contact our customer service team.</p>
+                </div>
+            </div>
+            <!-- question 4 -->
+            <div class="faq-item fourth-question">
+                <div class="faq-question">
+                    <h3>How can I check the status of my flight? <i class="fa-solid fa-angle-down"></i></h3>
+                </div>
+                <div class="faq-answer">
+                    <p>You can check your flight status by entering your flight number or route details in the 
+                       "Flight Status" section of our website or mobile app. We also send real-time notifications 
+                       about delays or changes to the email and phone number provided during booking.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-questions-right">
+            <!-- question 5 -->
+            <div class="faq-item fifth-question">
+                <div class="faq-question">
+                    <h3>What is your baggage policy? <i class="fa-solid fa-angle-down"></i></h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Baggage allowances vary by airline, route, and fare class. Generally, economy tickets include 
+                       one carry-on bag and one checked bag up to 23kg. Premium cabins offer increased allowances. 
+                       Specific details will be displayed during the booking process and in your confirmation email.</p>
+                </div>
+            </div>
+            <!-- question 6 -->
+            <div class="faq-item sixth-question">
+                <div class="faq-question">
+                    <h3>Do you offer travel insurance? <i class="fa-solid fa-angle-down"></i></h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we offer comprehensive travel insurance options that cover trip cancellations, 
+                       medical emergencies, lost baggage, and travel delays. You can add insurance during 
+                       the booking process or purchase it separately from your account dashboard.</p>
+                </div>
+            </div>
+            <!-- question 7 -->
+            <div class="faq-item seventh-question">
+                <div class="faq-question">
+                    <h3>How do I contact customer support? <i class="fa-solid fa-angle-down"></i></h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Our customer support team is available 24/7. You can reach us through live chat on our website, 
+                       by email at support@flightfinder.com, or by phone at 1-800-FLIGHTS. For urgent inquiries 
+                       related to same-day travel, we recommend calling our priority helpline.</p>
+                </div>
+            </div>
+            <!-- question 8 -->
+            <div class="faq-item eight-question">
+                <div class="faq-question">
+                    <h3>Is my personal information secure? <i class="fa-solid fa-angle-down"></i></h3>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely. We use industry-standard encryption and security protocols to protect your personal 
+                       and payment information. We never share your data with third parties without your consent, 
+                       and we comply with global data protection regulations including GDPR.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- info-container -->
+    <div class="info-container">
+        <!-- contact us -->
+         <div class="contact-us">
+            <p>Contact Us</p><br>
+            <ul>
+                <li><a href="customer-support.html">Customer Support</a></li>
+                <li><a href="service-guarantee.html">Service Guarantee</a></li>
+                <li><a href="more-service-info.html">More Service info</a></li>
+            </ul>
+         </div>
+        <!-- about us -->
+            <div class="about-us">
+                <p>About Us</p><br>
+                <ul>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="terms-and-conditions.html">Terms and Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        <!-- connect with us -->
+            <div class="connect-with-us">
+                <p>Connect with us</p><br>
+                <ul>
+                    <li><a href="facebook"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="twitter"><i class="fa-brands fa-twitter"></i></i></a></li>
+                    <li><a href="instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+<footer>
+    <div class="footer-form">
+    <p><i class="fa-solid fa-copyright"></i> 2025 FLIGHTFINDER</p>
+    </div>
+</footer>
+</main>
+<script>
+    // Get elements
+const oneWay = document.getElementById('oneway');
+const roundTrip = document.getElementById('roundtrip');
+const returnDateContainer = document.getElementById('returnDateContainer');
+
+// Event listeners
+oneWay.addEventListener('change', function () {
+  if (oneway.checked) {
+    returnDateContainer.style.display = 'none';
+  }
+});
+
+roundtrip.addEventListener('change', function () {
+  if (roundtrip.checked) {
+    returnDateContainer.style.display = 'block';
+  }
+});
+
+
+document.getElementById("searchBtn").addEventListener("click", function () {
+    // Get values from the form
+    const tripType = document.querySelector('input[name="trip-type"]:checked').value;
+    const from = document.querySelector(".from").value;
+    const to = document.querySelector(".to").value;
+    const departure = document.querySelector(".departure-date").value;
+    const returnDate = document.querySelector(".return-date").value;
+    const cabinClass = document.querySelector(".cabin-class").value;
+
+    // Save the data to localStorage
+    const searchData = {
+        tripType,
+        from,
+        to,
+        departure,
+        returnDate,
+        cabinClass
+    };
+    localStorage.setItem("flightSearchData", JSON.stringify(searchData));
+
+    // Redirect to availableflight.html
+    window.location.href = "availableflights.html";
+});
+
+const tripData = {
+  from: document.querySelector(".from").value,
+  to: document.querySelector(".to").value,
+  departure: document.querySelector(".departure-date").value,
+  return: document.querySelector(".return-date")?.value || "",
+  tripType: document.querySelector("input[name='trip-type']:checked").value,
+  cabin: document.querySelector(".cabin-class").value,
+  adults: parseInt(document.querySelector(".adults").value),
+  kids: parseInt(document.querySelector(".kids").value),
+  infants: parseInt(document.querySelector(".infants").value)
+};
+localStorage.setItem("tripData", JSON.stringify(tripData));
+
+// FAQ Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const icon = question.querySelector('.fa-angle-down');
+        
+        question.addEventListener('click', () => {
+            // Close others
+            faqItems.forEach(i => {
+                if (i !== item) {
+                    i.querySelector('.faq-answer').classList.remove('active');
+                    i.querySelector('.fa-angle-down').classList.remove('rotate-icon');
+                }
+            });
+
+            // Toggle current
+            answer.classList.toggle('active');
+            icon.classList.toggle('rotate-icon');
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+        // Check if user is logged in
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        
+        // Get the elements
+        const loginRegisterElement = document.getElementById('login-register');
+        const userProfileElement = document.getElementById('user-profile');
+        
+        // Update display based on login state
+        if (isLoggedIn === 'true') {
+            loginRegisterElement.style.display = 'none';
+            userProfileElement.style.display = 'block';
+        } else {
+            loginRegisterElement.style.display = 'block';
+            userProfileElement.style.display = 'none';
+        }
+        
+        // Add logout functionality
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            // Clear login state
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            // Redirect to home or login page
+            window.location.href = 'flight.html';
+        });
+    });
+
+</script>
+</body>
+</html>

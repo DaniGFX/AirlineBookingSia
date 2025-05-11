@@ -1,0 +1,287 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@font-face {
+    font-family: 'MyFont';
+    src: url(Vortigra.otf);
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 40px;
+    background-color: white;
+  }
+.logo {
+    font-family: 'MyFont';
+    font-weight: bold;
+    font-size: 40px;
+    color: #0a3c5f;
+  }
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+    list-style: none;
+    padding-right: 20px;
+}
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+nav a.active {
+    color: #0a3c5f;
+    font-weight:bold ;
+}
+
+nav a:hover {
+    color: #0a3c5f;
+}
+
+main h1 {
+    text-align: center;
+    font-size: 70px;
+    color: #ffffff;background-image: url(img/best-places-to-travel-banner.jpg);
+    background-size: cover;
+    padding: 80px;
+}
+
+.trip-type {
+    display: flex;
+    gap: 15px;
+    margin-top:20px;
+    margin-left: 135px;
+}
+.radio-group {
+    display: flex;
+    align-items: center;
+}
+input[type="radio"] {
+    width: auto;
+    margin-right: 5px;
+}
+.form-row {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+.next-row {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+.from, .to, .departure-date, .return-date, .cabin-class, .Adults, .kids, .infants {
+    width: 300px; 
+    height: 40px;    
+    padding: 8px;   
+    font-size: 16px;  
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-date {
+    position: relative;
+}
+
+.input-label {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    font-size: 12;
+    color: #666;
+    pointer-events: none;
+}
+
+input[type="date"]{
+    padding-top: 24px;
+    padding-bottom: 8px;
+    font-size: 15px;
+}
+
+.input-with-icon {
+    position: relative;
+}
+.input-with-icon input {
+    padding-left: 35px; /* Make space for the icon */
+}
+.input-with-icon i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.cabin-class{
+    padding-left: 30px;
+}
+
+.search-button {
+    background-color: #0a3c5f;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 130px;
+    margin-right: 130px;
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.flight-button {
+    background-color: #0a3c5f;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 130px;
+    margin-right: 130px;
+    text-align: center;
+}
+
+
+.flights h2, .hotels h2 {
+    color: #666;
+    font-size: 20px;
+    margin-top: 70px;
+    margin-left: 130px;
+}
+.flights h2 span, .hotels h2 span {
+    color: #0a3c5f;
+    font-weight: bold;
+}
+
+.all-arrow{
+    text-align: right;
+    margin-right: 130px;
+    color: #666;
+}
+
+.flight-row{
+    display: flex;
+    gap: 50px;
+    margin-top: 20px;
+    margin-left: 130px;
+    margin-right: 130px;
+    position: relative;
+}
+
+.shanghai-flight, .sydney-flight, .kyoto-flight {
+    width: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shanghai-flight img, .sydney-flight img, .kyoto-flight img {
+    width: 100%;
+    height: 300px;
+}
+
+.shanghai-info, .sydney-info, .kyoto-info {
+    padding: 16px;
+    text-align: left;
+}
+
+.price{
+    text-align: right;
+    position: relative
+}
+
+.faqs h2 {
+    color: #666;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 70;
+}
+
+.faq-questions-left {
+    display: inline-block;
+    margin-left: 60px;
+    margin-top: 50px;
+    color: #666; 
+
+}
+
+.faq-questions-right {
+    display: inline-block;
+    text-align: left;
+    margin-left: 60px;
+    
+    color: #666;
+    
+}
+
+
+.faqs-container {
+    
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 100px;
+    margin-left: 130px;
+    margin-right: 130px;
+    
+}
+
+.fa-angle-down{
+    margin-left: 1100px;
+}
+
+.info-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 100px;
+    margin-left: 130px;
+    margin-right: 130px;
+    padding-bottom: 100px;
+    gap: 300px
+}
+
+.contact-us p, .about-us p, .connect-with-us p {
+    font-weight: bold;
+} 
+.contact-us li, .about-us li, .connect-with-us li {
+    list-style: none;
+}
+.contact-us a, .about-us a, .connect-with-us a{
+    text-decoration: none;
+    color: #0a3c5f;
+}
+.connect-with-us ul{
+    display: flex;
+    justify-content: space-between;
+}
+
+.connect-with-us{
+    padding-bottom: 40px;
+}
+
+footer {
+    background-color: #0a3c5f;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
+

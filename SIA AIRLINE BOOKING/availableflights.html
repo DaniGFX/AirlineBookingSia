@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Available Flights</title>
+  <style>
+    .flight-card {
+      border: 4px solid #0a3c5f;
+      padding: 2rem;
+      margin: 1rem 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      background-color: #0a3c5f;
+      color: white;
+      padding: 20px;
+      margin-left: 200px;
+      margin-right: 200px;
+      border-radius: 10px;
+    }
+    #flights-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    button {
+      background-color: #0a3c5f;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+.note{ 
+  background-color: #ffefc3;
+  color: #4a3c0a;
+  border: 2px solid #f0c36d;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px auto;
+  width: fit-content;
+  max-width: 90%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+  </style>
+</head>
+<body>
+  <h1>Available Flights</h1>
+  <div class="trip-summary" id="trip-summary"></div>
+  <div id="flights-container"></div>
+
+  <script>
+    // Get user search data
+    const searchData = JSON.parse(localStorage.getItem("flightSearchData"));
+    
+    
+
+    // Dummy flight data
+    const flights = [
+      {
+        from: "Manila (MNL)",
+        to: "Tokyo (NRT)",
+        departure: "2025-05-20",
+        return: "2025-05-25",
+        cabin: "economy",
+        time: "10:00 AM",
+        flightNumber: "PR 123", 
+        airline: "Philippine Airlines",
+        price: 550,
+        duration: "4h 30m"
+      },
+      {
+        from: "Manila (MNL)",
+        to: "Tokyo (NRT)",
+        departure: "2025-05-20",
+        return: "2025-05-25",
+        cabin: "economy",
+        time: "11:00 AM", 
+        flightNumber: "NH 456",
+        airline: "All Nippon Airways",
+        price: 550,
+        duration: "4h 15m"
+      },
+      {
+        from: "Manila (MNL)",
+        to: "Tokyo (NRT)",
+        departure: "2025-05-20",
+        return: "2025-05-25",
+        cabin: "business",
+        time: "6:00 AM", 
+        flightNumber: "PR 789",
+        airline: "Philippine Airlines",
+        price: 980,
+        duration: "4h 30m"
+      },
+      {
+        from: "Manila (MNL)",
+        to: "Tokyo (NRT)",
+        departure: "2025-05-20",
+        return: "2025-05-25",
+        cabin: "business",
+        time: "4:00 AM", 
+        flightNumber: "NH 101",
+        airline: "All Nippon Airways",
+        price: 980,
+        duration: "4h 45m"
+      },
+      {
+        from: "Manila (MNL)",
+        to: "Tokyo (NRT)",
+        departure: "2025-05-20",
+        return: "2025-05-25",
+        cabin: "business",
+        time: "2:00 PM",
+        flightNumber: "JL 202",
+        airline: "Japan Airlines",
+        price: 980,
+        duration: "4h 30m"
+      },
+      {
+        from: "Cebu (CEB)",
+        to: "Seoul (ICN)",
+        departure: "2025-05-22",
+        return: "2025-05-30",
+        cabin: "economy",
+        time: "8:00 AM",
+        flightNumber: "PR 303",
+        airline: "Philippine Airlines",
+        price: 450,
+        duration: "5h 15m"
+      },
+      {
+        from: "Cebu (CEB)",
+        to: "Seoul (ICN)",
+        departure: "2025-05-22",
+        return: "2025-05-30",
+        cabin: "business",
+        time: "9:00 AM",
+        flightNumber: "KE 404",
+        airline: "Korean Air",
+        price: 850,
+        duration: "5h 15m"
+      },
+      {
+        from: "Davao (DVO)",
+        to: "Singapore (SIN)",
+        departure: "2025-06-01",
+        return: "2025-06-10",
+        cabin: "economy",
+        time: "7:00 AM",
+        flightNumber: "PR 505",
+        airline: "Philippine Airlines",
+        price: 600,
+        duration: "3h 45m"
+      },
+      {
+        from: "Davao (DVO)",
+        to: "Singapore (SIN)",
+        departure: "2025-06-01",
+        return: "2025-06-10",
+        cabin: "business",
+        time: "8:00 AM",
+        flightNumber: "SQ 606",
+        airline: "Singapore Airlines",
+        price: 1100,
+        duration: "3h 45m"
+      },
+      {
+        from: "Manila (MNL)",
+        to: "Los Angeles (LAX)",
+        departure: "2025-07-01",
+        return: "2025-07-15",
+        cabin: "economy",
+        time: "10:00 AM",
+        flightNumber: "PR 707",
+        airline: "Philippine Airlines",
+        price: 1200,
+        duration: "14h 30m"
+      },
+      {
+        from: "Manila (MNL)",
+        to: "Los Angeles (LAX)",
+        departure: "2025-07-01",
+        return: "2025-07-15",
+        cabin: "business",
+        time: "11:00 AM",
+        flightNumber: "AA 808",
+        airline: "American Airlines",
+        price: 2200,
+        duration: "14h 30m"
+      },
+      {
+        from: "Cebu (CEB)",
+        to: "New York (JFK)",
+        departure: "2025-08-01",
+        return: "2025-08-15",
+        cabin: "economy",
+        time: "9:00 AM",
+        flightNumber: "PR 909",
+        airline: "Philippine Airlines",
+        price: 1500,
+        duration: "16h 45m"
+      },
+      {
+        from: "Cebu (CEB)",
+        to: "New York (JFK)",
+        departure: "2025-08-01",
+        return: "2025-08-15",
+        cabin: "business",
+        time: "10:00 AM",
+        flightNumber: "DL 1010",
+        airline: "Delta Airlines",
+        price: 2800,
+        duration: "16h 45m"
+      },
+      {
+        from: "Davao (DVO)",
+        to: "London (LHR)",
+        departure: "2025-09-01",
+        return: "2025-09-15",
+        cabin: "economy",
+        time: "8:00 AM",
+        flightNumber: "PR 1111",
+        airline: "Philippine Airlines",
+        price: 1700,
+        duration: "17h 20m"
+      },
+      {
+        from: "Davao (DVO)",
+        to: "London (LHR)",
+        departure: "2025-09-01",
+        return: "2025-09-15",
+        cabin: "business",
+        time: "9:00 AM",
+        flightNumber: "BA 1212",
+        airline: "British Airways",
+        price: 3200,
+        duration: "17h 20m"
+      }
+    ];
+
+    const container = document.getElementById("flights-container");
+
+let results = flights.filter(flight => {
+  const matchFrom = flight.from === searchData.from;
+  const matchTo = flight.to === searchData.to;
+  const matchDeparture = flight.departure === searchData.departure;
+  const matchReturn = searchData.tripType === "roundtrip" ? (flight.return === searchData.returnDate) : true;
+  const matchCabin = flight.cabin === searchData.cabinClass;
+
+  return matchFrom && matchTo && matchDeparture && matchReturn && matchCabin;
+});
+
+// If no exact match, show flights with same route
+if (results.length === 0) {
+  results = flights.filter(flight => {
+    return flight.from === searchData.from && flight.to === searchData.to;
+  });
+
+  if (results.length > 0) {
+    const note = document.createElement("p");
+    note.textContent = "No exact matches found. Showing flights with same route:";
+    container.appendChild(note);
+  }
+}
+
+// If still none, show all available flights as fallback
+if (results.length === 0) {
+  const note = document.createElement("p");
+  note.textContent = "No flights match your search. Showing all available flights:";
+  note.className = "note";
+  container.appendChild(note);
+  results = flights;
+}
+
+results.forEach(flight => {
+  const bookingFlightData = { ...flight };
+  if (searchData.tripType === "oneway") {
+    delete bookingFlightData.return;
+  }
+
+  const div = document.createElement("div");
+  div.className = "flight-card";
+  div.innerHTML = `
+    <h3>${flight.from} → ${flight.to}</h3>
+    <p>Departure: ${flight.departure} at ${flight.time || "N/A"}</p>
+    ${searchData.tripType === "roundtrip" ? `<p>Return: ${flight.return || "N/A"}</p>` : ""}
+    <p>Cabin Class: ${flight.cabin.charAt(0).toUpperCase() + flight.cabin.slice(1)}</p>
+    <p>Flight Duration: ${flight.duration || "N/A"}</p>
+    <p>Flight Number: ${flight.flightNumber || "N/A"}</p>
+    <p>Airline: ${flight.airline || "N/A"}</p>
+    <p>Trip Type: ${searchData.tripType.charAt(0).toUpperCase() + searchData.tripType.slice(1)}</p>
+    <p>Price: $${flight.price}</p>
+    <button onclick='bookFlight(${JSON.stringify(bookingFlightData)})'>Book Now</button>
+  `;
+  container.appendChild(div);
+});
+
+function bookFlight(flight) {
+  //Store the flight data without the return date for one-way trips
+  localStorage.setItem("selectedFlight",JSON.stringify(flight))
+  //store the trip type so other pages know if it's a one-way or round trip
+  localStorage.setItem("tripType", searchData.tripType);
+  window.location.href = "seat.html"
+}
+  </script>
+</body>
+</html>
